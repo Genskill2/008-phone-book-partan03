@@ -13,24 +13,22 @@ struct entry0
 
 typedef struct entry0 entry;
 
-/* Command handlers */
 void add(char *,char *);
 int search(FILE *,char *);
 void list(FILE *);
 int delete(FILE *,char *);
 
-/* Utility functions  */
-FILE * open_db_file(); // Opens the database file. Prints error and quits if it's not available
+FILE * open_db_file(); 
 
-void print_usage(char *, char *); // Prints usage
+void print_usage(char *, char *); 
 
-entry *load_entries(FILE *); // Load all entries from the database file. Returns pointer to first entry
+entry *load_entries(FILE *); 
 
-entry *create_entry_node(char *, char *); // Create a new entry node. Has to be freed by user
+entry *create_entry_node(char *, char *); 
 
-void free_entries(entry *); // TBD Given the first node of a linked list of entries, will free all the nodes
+void free_entries(entry *);
 
-void write_all_entries(entry *); // Given the first node of a linked list of entries, will delete the database file on the disk and save the given entries into the file 
+void write_all_entries(entry *);  
 
 
 int main(int argc, char *argv[]) 
@@ -42,7 +40,7 @@ int main(int argc, char *argv[])
     } 
 
     if(strcmp(argv[1], "add") == 0) 
-    {   /* Handle add */
+    {   
         if(argc != 4) 
         {
             print_usage("Improper arguments for add", argv[0]);
@@ -55,7 +53,7 @@ int main(int argc, char *argv[])
         exit(0);
     }
     else if(strcmp(argv[1], "list") == 0) 
-    {  /* Handle list */
+    {  
         if(argc != 2) 
         {
             print_usage("Improper arguments for list", argv[0]);
@@ -68,7 +66,7 @@ int main(int argc, char *argv[])
         exit(0);
     } 
     else if(strcmp(argv[1], "search") == 0) 
-    {  /* Handle search */
+    {  
         if(argc != 3)
         {
             print_usage("Improper arguments for search",argv[0]);
@@ -87,7 +85,7 @@ int main(int argc, char *argv[])
         exit(0);
     } 
     else if(strcmp(argv[1], "delete") == 0) 
-    {  /* Handle delete */
+    {  
         if(argc != 3) 
         {
             print_usage("Improper arguments for delete", argv[0]);
@@ -168,7 +166,7 @@ entry *load_entries(FILE *fp)
     entry *ret = NULL;
     entry *current = NULL;
     entry *tmp = NULL;
-          
+   
   
     while(fscanf(fp, "%20[^,\n],%20[^,\n]\n", name, phone) != EOF) 
     {
@@ -225,7 +223,7 @@ int delete(FILE *db_file, char *name)
     entry *p = load_entries(db_file);
     entry *base = p;
     entry *prev = NULL;
-    entry del = NULL ; / Node to be deleted */
+    entry *del = NULL ; 
     int deleted = 0;
     while(p!=NULL) 
     {
